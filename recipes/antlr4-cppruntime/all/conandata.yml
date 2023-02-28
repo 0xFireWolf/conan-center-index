@@ -8,6 +8,9 @@ sources:
   "4.11.1":
     url: "https://github.com/antlr/antlr4/archive/refs/tags/4.11.1.tar.gz"
     sha256: "81f87f03bb83b48da62e4fc8bfdaf447efb9fb3b7f19eb5cbc37f64e171218cf"
+  "4.12.0":
+    url: "https://github.com/antlr/antlr4/archive/refs/tags/4.12.0.tar.gz"
+    sha256: "b6050a2111a6bb6405cc5e9e7bca80c136548ac930e4b2c27566d1eb32f8aed"
 patches:
   "4.9.3":
     - patch_file: "patches/0001-update-cmakelist.patch"
