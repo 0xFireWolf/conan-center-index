@@ -92,6 +92,7 @@ class LibPlistConan(ConanFile):
         env = VirtualBuildEnv(self)
         env.generate()
         tc = AutotoolsToolchain(self)
+        tc.configure_args.append("--without-cython")
         tc.generate()
 
     def _patch_sources(self):
