@@ -25,12 +25,12 @@ class LibPlistConan(ConanFile):
     options = {
         "shared": [True, False],
         "fPIC": [True, False],
-        "with_cxx": [True, False]
+        "enable_cxx": [True, False]
     }
     default_options = {
         "shared": False,
         "fPIC": True,
-        "with_cxx": True,
+        "enable_cxx": True,
     }
 
     @property
@@ -47,8 +47,9 @@ class LibPlistConan(ConanFile):
     def configure(self):
         if self.options.shared:
             self.options.rm_safe("fPIC")
-        self.settings.rm_safe("compiler.cppstd")
-        self.settings.rm_safe("compiler.libcxx")
+        if not self.options.enable_cxx:
+            self.settings.rm_safe("compiler.libcxx")
+            self.settings.rm_safe("compiler.cppstd")
 
     def layout(self):
         basic_layout(self, src_folder="src")
@@ -115,5 +116,5 @@ class LibPlistConan(ConanFile):
         self.cpp_info.set_property("cmake_file_name", "libplist")
         self.cpp_info.set_property("cmake_target_name", "libplist::libplist")
         self.cpp_info.libs = ["plist-2.0"]
-        if self.options.with_cxx:
+        if self.options.enable_cxx:
             self.cpp_info.libs.append("plist++-2.0")
